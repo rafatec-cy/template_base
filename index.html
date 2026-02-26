@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Plantilla profesional para pequeños negocios: barberías, peluquerías, tiendas y restaurantes." />
+    <title>Mi Negocio | Plantilla Profesional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+       VARIABLES CSS — Paleta de colores y tipografía base
+    ============================================================ */
+        :root {
+            --color-primary: #c9a84c;
+            /* dorado elegante          */
+            --color-primary-dk: #a8892e;
+            /* dorado oscuro hover       */
+            --color-bg: #0d0d0d;
+            /* fondo oscuro              */
+            --color-surface: #161616;
+            /* tarjetas / secciones      */
+            --color-surface2: #1e1e1e;
+            /* superficie alternativa    */
+            --color-border: #2a2a2a;
+            /* líneas sutiles            */
+            --color-text: #f0ece4;
+            /* texto principal           */
+            --color-muted: #9e9890;
+            /* texto secundario          */
+            --color-white: #ffffff;
+
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 24px;
+
+            --shadow-card: 0 4px 30px rgba(0, 0, 0, .45);
+            --shadow-glow: 0 0 18px rgba(201, 168, 76, .25);
+
+            --transition: .3s cubic-bezier(.4, 0, .2, 1);
+
+            --font: 'Outfit', sans-serif;
+            --max-w: 1140px;
+        }
+
+        /* ============================================================
+       RESET Y BASE
+    ============================================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ============================================================
+       UTILIDADES COMPARTIDAS
+    ============================================================ */
+        .container {
+            width: 90%;
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: .75rem;
+            font-weight: 600;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            color: var(--color-muted);
+            max-width: 560px;
+            font-size: 1.05rem;
+        }
+
+        /* Línea decorativa dorada */
+        .gold-line {
+            display: block;
+            width: 48px;
+            height: 3px;
+            background: var(--color-primary);
+            border-radius: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* Botón principal */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--color-primary);
+            color: #000;
+            font-family: var(--font);
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: .03em;
+            padding: 15px 32px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-dk);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Botón secundario (outline) */
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--color-primary);
+            font-family: var(--font);
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 14px 30px;
+            border: 2px solid var(--color-primary);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background var(--transition), color var(--transition), transform var(--transition);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+       NAVBAR
+    ============================================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 18px 0;
+            transition: background var(--transition), padding var(--transition), box-shadow var(--transition);
+        }
+
+        .navbar.scrolled {
+            background: rgba(13, 13, 13, .92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 12px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, .5);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: .04em;
+        }
+
+        .nav-logo span {
+            color: var(--color-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: .95rem;
+            font-weight: 500;
+            color: var(--color-muted);
+            transition: color var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            transition: width var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--color-text);
+            border-radius: 2px;
+            transition: transform var(--transition), opacity var(--transition);
+        }
+
+        /* Mobile nav open state */
+        .nav-toggle.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .nav-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* ============================================================
+       HERO
+    ============================================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            /* Fondo degradado premium */
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1200 50%, #0d0d0d 100%);
+        }
+
+        /* Capa de textura / patrón */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201, 168, 76, .12) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201, 168, 76, .07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Partículas decorativas */
+        .hero-particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hero-particles::before,
+        .hero-particles::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: var(--color-primary);
+            opacity: .08;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+
+        .hero-particles::before {
+            width: 500px;
+            height: 500px;
+            top: -100px;
+            left: -150px;
+            animation-duration: 10s;
+        }
+
+        .hero-particles::after {
+            width: 360px;
+            height: 360px;
+            bottom: -80px;
+            right: -100px;
+            animation-duration: 7s;
+        }
+
+        @keyframes float {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(30px, 20px) scale(1.08);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 120px 20px 60px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: .75rem;
+            font-weight: 600;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            border: 1px solid rgba(201, 168, 76, .35);
+            padding: 6px 18px;
+            border-radius: 50px;
+            margin-bottom: 28px;
+            animation: fadeUp .8s ease both;
+        }
+
+        .hero-title {
+            font-size: clamp(2.6rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -.02em;
+            margin-bottom: 22px;
+            animation: fadeUp .8s .15s ease both;
+        }
+
+        .hero-title .accent {
+            color: var(--color-primary);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--color-muted);
+            max-width: 520px;
+            margin: 0 auto 42px;
+            animation: fadeUp .8s .3s ease both;
+        }
+
+        .hero-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeUp .8s .45s ease both;
+        }
+
+        /* Icono WhatsApp SVG inline */
+        .icon-wa {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* Scroll indicator */
+        .hero-scroll {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: var(--color-muted);
+            font-size: .72rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            animation: fadeUp 1s 1s ease both;
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 36px;
+            background: linear-gradient(to bottom, var(--color-primary), transparent);
+            animation: scrollPulse 1.6s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+
+            0%,
+            100% {
+                opacity: .4;
+                transform: scaleY(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scaleY(1.15);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(28px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+       SOBRE NOSOTROS
+    ============================================================ */
+        .about {
+            background: var(--color-surface);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .about-img-wrap {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            aspect-ratio: 4/3;
+        }
+
+        .about-img-wrap img {
+            height: 100%;
+            transition: transform .6s ease;
+        }
+
+        .about-img-wrap:hover img {
+            transform: scale(1.04);
+        }
+
+        /* Badge flotante en la imagen */
+        .about-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: var(--color-primary);
+            color: #000;
+            font-weight: 700;
+            font-size: .9rem;
+            padding: 10px 18px;
+            border-radius: var(--radius-sm);
+        }
+
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-top: 28px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .feature-icon {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            background: rgba(201, 168, 76, .12);
+            border: 1px solid rgba(201, 168, 76, .2);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .feature-text h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .feature-text p {
+            font-size: .9rem;
+            color: var(--color-muted);
+        }
+
+        /* ============================================================
+       SERVICIOS
+    ============================================================ */
+        .services {
+            background: var(--color-bg);
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 52px;
+        }
+
+        .services-header .section-desc {
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 36px 30px;
+            transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), transparent);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(201, 168, 76, .35);
+            box-shadow: 0 12px 40px rgba(201, 168, 76, .1);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(201, 168, 76, .1);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            transition: background var(--transition), transform var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            background: rgba(201, 168, 76, .2);
+            transform: scale(1.08);
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: .95rem;
+            color: var(--color-muted);
+            line-height: 1.65;
+        }
+
+        .service-price {
+            display: inline-block;
+            margin-top: 18px;
+            font-size: .85rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: .04em;
+        }
+
+        /* ============================================================
+       GALERÍA
+    ============================================================ */
+        .gallery {
+            background: var(--color-surface);
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            height: 100%;
+            transition: transform .5s ease;
+        }
+
+        /* Overlay en hover */
+        .gallery-item::after {
+            content: 'Ver foto';
+            position: absolute;
+            inset: 0;
+            background: rgba(201, 168, 76, .18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            color: var(--color-white);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Elemento grande (primero) */
+        .gallery-item.large {
+            aspect-ratio: 16/9;
+        }
+
+        /* ============================================================
+       TESTIMONIOS
+    ============================================================ */
+        .testimonials {
+            background: var(--color-bg);
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 52px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            transition: transform var(--transition), box-shadow var(--transition);
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .quote-mark {
+            font-size: 4rem;
+            line-height: 1;
+            color: var(--color-primary);
+            opacity: .35;
+            font-family: Georgia, serif;
+            margin-bottom: -12px;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            color: var(--color-muted);
+            line-height: 1.75;
+            margin-bottom: 24px;
+        }
+
+        .testimonial-stars {
+            color: var(--color-primary);
+            font-size: 1rem;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dk));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #000;
+            flex-shrink: 0;
+        }
+
+        .author-info strong {
+            display: block;
+            font-size: .95rem;
+            font-weight: 600;
+        }
+
+        .author-info span {
+            font-size: .82rem;
+            color: var(--color-muted);
+        }
+
+        /* ============================================================
+       CONTACTO
+    ============================================================ */
+        .contact {
+            background: var(--color-surface);
+        }
+
+        .contact-inner {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 56px;
+        }
+
+        .contact-info h2 {
+            margin-bottom: 14px;
+        }
+
+        .contact-list {
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .contact-list-icon {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            background: rgba(201, 168, 76, .1);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .contact-list-text strong {
+            display: block;
+            font-size: .9rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .contact-list-text span {
+            font-size: .88rem;
+            color: var(--color-muted);
+        }
+
+        /* Formulario */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: .88rem;
+            font-weight: 600;
+            color: var(--color-muted);
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            background: var(--color-surface2);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            color: var(--color-text);
+            font-family: var(--font);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color var(--transition), box-shadow var(--transition);
+            width: 100%;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, .12);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--color-muted);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .form-submit {
+            align-self: flex-start;
+        }
+
+        /* ============================================================
+       FOOTER
+    ============================================================ */
+        .footer {
+            background: #080808;
+            border-top: 1px solid var(--color-border);
+            padding: 56px 0 28px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand p {
+            font-size: .92rem;
+            color: var(--color-muted);
+            margin-top: 12px;
+            max-width: 300px;
+        }
+
+        .footer-logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .footer-logo span {
+            color: var(--color-primary);
+        }
+
+        .footer-col h4 {
+            font-size: .95rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--color-text);
+        }
+
+        .footer-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col ul li a {
+            font-size: .9rem;
+            color: var(--color-muted);
+            transition: color var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 6px;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--color-muted);
+            transition: background var(--transition), color var(--transition), border-color var(--transition);
+        }
+
+        .social-btn:hover {
+            background: var(--color-primary);
+            color: #000;
+            border-color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--color-border);
+            padding-top: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            font-size: .85rem;
+            color: var(--color-muted);
+        }
+
+        .footer-bottom span {
+            color: var(--color-primary);
+        }
+
+        /* ============================================================
+       RESPONSIVE — BREAKPOINT TABLET (≥ 680px)
+    ============================================================ */
+        @media (min-width: 680px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ============================================================
+       RESPONSIVE — BREAKPOINT DESKTOP (≥ 960px)
+    ============================================================ */
+        @media (min-width: 960px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: auto auto;
+            }
+
+            /* Primera imagen ocupa 2 columnas */
+            .gallery-item:first-child {
+                grid-column: span 2;
+                aspect-ratio: 16/9;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .contact-inner {
+                grid-template-columns: 1fr 1.2fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            /* Nav mobile → desktop */
+            .nav-links {
+                display: flex !important;
+            }
+
+            .nav-toggle {
+                display: none !important;
+            }
+        }
+
+        /* ============================================================
+       MOBILE NAV OVERLAY
+    ============================================================ */
+        @media (max-width: 959px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(10, 10, 10, .97);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 36px;
+                z-index: 99;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 1.4rem;
+                color: var(--color-text);
+            }
+
+            .nav-links .btn-primary {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <!-- Logo -->
+            <a href="#" class="nav-logo">Mi<span>Negocio</span></a>
+
+            <!-- Hamburger (móvil) -->
+            <button class="nav-toggle" id="navToggle" aria-label="Menú" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <!-- Links -->
+            <nav class="nav-links" id="navLinks">
+                <a href="#sobre">Nosotros</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#galeria">Galería</a>
+                <a href="#testimonios">Testimonios</a>
+                <a href="#contacto">Contacto</a>
+                <a href="https://wa.me/1234567890" target="_blank" class="btn-primary"
+                    style="padding:11px 22px;font-size:.9rem;">
+                    <!-- WhatsApp icon -->
+                    <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                        <path
+                            d="M12 0C5.373 0 0 5.373 0 12a11.95 11.95 0 001.671 6.117L.057 23.882l5.919-1.553A11.958 11.958 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.814 9.814 0 01-5.003-1.367l-.36-.214-3.713.974.992-3.622-.235-.372A9.823 9.823 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" />
+                    </svg>
+                    WhatsApp
+                </a>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- ============================================================
+       HERO
+  ============================================================ -->
+    <section class="hero" id="inicio">
+        <!-- Orbes animados de fondo -->
+        <div class="hero-particles" aria-hidden="true"></div>
+
+        <div class="container hero-content">
+            <!-- Badge superior -->
+            <span class="hero-badge">✦ Bienvenido a nuestro negocio</span>
+
+            <!-- Título principal -->
+            <h1 class="hero-title">
+                Tu estilo,<br />nuestra <span class="accent">pasión</span>
+            </h1>
+
+            <!-- Subtítulo -->
+            <p class="hero-subtitle">
+                Ofrecemos servicios de primera calidad para que luzcas y te sientas
+                increíble. Reserva tu cita fácilmente por WhatsApp.
+            </p>
+
+            <!-- Botones CTA -->
+            <div class="hero-cta">
+                <a href="https://wa.me/1234567890" target="_blank" class="btn-primary" id="hero-whatsapp-btn">
+                    <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                        <path
+                            d="M12 0C5.373 0 0 5.373 0 12a11.95 11.95 0 001.671 6.117L.057 23.882l5.919-1.553A11.958 11.958 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.814 9.814 0 01-5.003-1.367l-.36-.214-3.713.974.992-3.622-.235-.372A9.823 9.823 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" />
+                    </svg>
+                    Agendar por WhatsApp
+                </a>
+                <a href="#servicios" class="btn-outline">Ver servicios</a>
+            </div>
+        </div>
+
+        <!-- Indicador scroll -->
+        <div class="hero-scroll" aria-hidden="true">
+            <div class="hero-scroll-line"></div>
+            <span>Explorar</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+       SOBRE NOSOTROS
+  ============================================================ -->
+    <section class="section about" id="sobre">
+        <div class="container about-grid">
+
+            <!-- Imagen -->
+            <div class="about-img-wrap">
+                <img src="images/gallery1.png" alt="Sobre nuestro negocio" loading="lazy" />
+                <div class="about-badge">+5 años de experiencia</div>
+            </div>
+
+            <!-- Texto -->
+            <div class="about-text">
+                <span class="section-label">Sobre nosotros</span>
+                <span class="gold-line"></span>
+                <h2 class="section-title">Calidad y dedicación en cada detalle</h2>
+                <p class="section-desc">
+                    Somos un equipo apasionado comprometido con brindar la mejor experiencia
+                    a cada cliente. Utilizamos técnicas modernas y productos de alta calidad
+                    para garantizar resultados extraordinarios.
+                </p>
+
+                <!-- Características clave -->
+                <div class="about-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">✦</div>
+                        <div class="feature-text">
+                            <h4>Profesionales certificados</h4>
+                            <p>Nuestro equipo tiene años de formación y experiencia comprobada.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">⏱</div>
+                        <div class="feature-text">
+                            <h4>Atención puntual</h4>
+                            <p>Respetamos tu tiempo. Sin esperas innecesarias.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">★</div>
+                        <div class="feature-text">
+                            <h4>Satisfacción garantizada</h4>
+                            <p>Tu sonrisa al salir es nuestra mayor recompensa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+       SERVICIOS
+  ============================================================ -->
+    <section class="section services" id="servicios">
+        <div class="container">
+            <!-- Encabezado -->
+            <div class="services-header">
+                <span class="section-label">Lo que ofrecemos</span>
+                <span class="gold-line" style="margin:0 auto 16px;"></span>
+                <h2 class="section-title">Nuestros Servicios</h2>
+                <p class="section-desc">
+                    Cada servicio está diseñado pensando en tu comodidad y satisfacción,
+                    con los mejores estándares de calidad.
+                </p>
+            </div>
+
+            <!-- Tarjetas -->
+            <div class="services-grid">
+
+                <!-- Servicio 1 -->
+                <article class="service-card" id="servicio-corte">
+                    <div class="service-icon">✂️</div>
+                    <h3>Corte Clásico</h3>
+                    <p>
+                        Corte personalizado adaptado a tu tipo de rostro y estilo de vida.
+                        Incluye lavado y secado profesional.
+                    </p>
+                    <span class="service-price">Desde $15 USD</span>
+                </article>
+
+                <!-- Servicio 2 -->
+                <article class="service-card" id="servicio-barba">
+                    <div class="service-icon">💈</div>
+                    <h3>Arreglo de Barba</h3>
+                    <p>
+                        Perfilado, recorte y tratamiento de barba con productos premium.
+                        Acabado perfecto garantizado.
+                    </p>
+                    <span class="service-price">Desde $10 USD</span>
+                </article>
+
+                <!-- Servicio 3 -->
+                <article class="service-card" id="servicio-tratamiento">
+                    <div class="service-icon">🌿</div>
+                    <h3>Tratamiento Capilar</h3>
+                    <p>
+                        Hidratación profunda, mascarillas y tratamientos especializados
+                        para el cuidado y salud de tu cabello.
+                    </p>
+                    <span class="service-price">Desde $25 USD</span>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+       GALERÍA
+  ============================================================ -->
+    <section class="section gallery" id="galeria">
+        <div class="container">
+            <!-- Encabezado -->
+            <div class="gallery-header">
+                <span class="section-label">Nuestro trabajo</span>
+                <span class="gold-line" style="margin:0 auto 16px;"></span>
+                <h2 class="section-title">Galería</h2>
+                <p class="section-desc" style="margin:0 auto;">
+                    Un vistazo a algunos de nuestros mejores trabajos. Cada imagen es una
+                    muestra de nuestro compromiso con la excelencia.
+                </p>
+            </div>
+
+            <!-- Grid de imágenes -->
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/gallery1.png" alt="Trabajo de galería 1" loading="lazy" />
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery2.png" alt="Trabajo de galería 2" loading="lazy" />
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery3.png" alt="Trabajo de galería 3" loading="lazy" />
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery4.png" alt="Trabajo de galería 4" loading="lazy" />
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery5.png" alt="Trabajo de galería 5" loading="lazy" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+       TESTIMONIOS
+  ============================================================ -->
+    <section class="section testimonials" id="testimonios">
+        <div class="container">
+            <!-- Encabezado -->
+            <div class="testimonials-header">
+                <span class="section-label">Opiniones reales</span>
+                <span class="gold-line" style="margin:0 auto 16px;"></span>
+                <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            </div>
+
+            <!-- Tarjetas de testimonios -->
+            <div class="testimonials-grid">
+
+                <!-- Testimonio 1 -->
+                <div class="testimonial-card" id="testimonio-1">
+                    <div class="quote-mark">"</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        Increíble servicio. El equipo es muy profesional y el ambiente es
+                        genial. Definitivamente volvería y lo recomendaría a cualquiera.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JR</div>
+                        <div class="author-info">
+                            <strong>Juan Rodríguez</strong>
+                            <span>Cliente frecuente</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 2 -->
+                <div class="testimonial-card" id="testimonio-2">
+                    <div class="quote-mark">"</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        Me encanta cómo quedó mi corte. Son muy detallistas y siempre
+                        logran exactamente lo que busco. El mejor lugar de la ciudad.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">ML</div>
+                        <div class="author-info">
+                            <strong>María López</strong>
+                            <span>Cliente nueva</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 3 -->
+                <div class="testimonial-card" id="testimonio-3">
+                    <div class="quote-mark">"</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        Excelente atención desde que entré. El resultado superó mis
+                        expectativas. Los precios son muy razonables para la calidad que ofrecen.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">CA</div>
+                        <div class="author-info">
+                            <strong>Carlos Acosta</strong>
+                            <span>Cliente habitual</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+       CONTACTO
+  ============================================================ -->
+    <section class="section contact" id="contacto">
+        <div class="container contact-inner">
+
+            <!-- Información de contacto -->
+            <div class="contact-info">
+                <span class="section-label">Escríbenos</span>
+                <span class="gold-line"></span>
+                <h2 class="section-title">Contáctanos</h2>
+                <p class="section-desc">
+                    ¿Tienes preguntas o quieres agendar una cita? Estamos aquí para ayudarte.
+                    También puedes escribirnos directamente por WhatsApp.
+                </p>
+
+                <ul class="contact-list">
+                    <li>
+                        <div class="contact-list-icon">📍</div>
+                        <div class="contact-list-text">
+                            <strong>Dirección</strong>
+                            <span>Calle Principal 123, Ciudad</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contact-list-icon">📞</div>
+                        <div class="contact-list-text">
+                            <strong>Teléfono / WhatsApp</strong>
+                            <span>+1 (234) 567-890</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contact-list-icon">⏰</div>
+                        <div class="contact-list-text">
+                            <strong>Horario</strong>
+                            <span>Lun – Sáb: 9:00 am – 7:00 pm</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Formulario -->
+            <form class="contact-form" id="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="+1 234 567 890" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="servicio">Servicio de interés</label>
+                    <select id="servicio" name="servicio">
+                        <option value="">Selecciona un servicio…</option>
+                        <option value="corte">Corte Clásico</option>
+                        <option value="barba">Arreglo de Barba</option>
+                        <option value="tratamiento">Tratamiento Capilar</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte…"
+                        required></textarea>
+                </div>
+                <button type="submit" class="btn-primary form-submit" id="form-submit-btn">
+                    Enviar mensaje ✦
+                </button>
+            </form>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+
+                <!-- Brand -->
+                <div class="footer-brand">
+                    <div class="footer-logo">Mi<span>Negocio</span></div>
+                    <p>Calidad, dedicación y estilo en cada visita. Tu satisfacción es nuestra prioridad.</p>
+                    <!-- Redes sociales -->
+                    <div class="footer-social" style="margin-top:20px;">
+                        <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+                        <a href="#" class="social-btn" aria-label="Facebook">👤</a>
+                        <a href="https://wa.me/1234567890" target="_blank" class="social-btn"
+                            aria-label="WhatsApp">💬</a>
+                        <a href="#" class="social-btn" aria-label="TikTok">🎵</a>
+                    </div>
+                </div>
+
+                <!-- Navegación -->
+                <div class="footer-col">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#sobre">Nosotros</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#galeria">Galería</a></li>
+                    </ul>
+                </div>
+
+                <!-- Servicios -->
+                <div class="footer-col">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#servicios">Corte Clásico</a></li>
+                        <li><a href="#servicios">Arreglo de Barba</a></li>
+                        <li><a href="#servicios">Tratamiento Capilar</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contacto rápido -->
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><a href="tel:+1234567890">📞 +1 234 567 890</a></li>
+                        <li><a href="https://wa.me/1234567890" target="_blank">💬 WhatsApp</a></li>
+                        <li><a href="mailto:info@minegocio.com">✉ info@minegocio.com</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>© 2026 <span>MiNegocio</span>. Todos los derechos reservados.</p>
+                <p>Diseñado con <span>♥</span> para pequeños negocios</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ============================================================
+       JAVASCRIPT — Navbar scroll, menú móvil, formulario
+  ============================================================ -->
+    <script>
+        /* ── Navbar: agrega clase 'scrolled' al hacer scroll ── */
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        }, { passive: true });
+
+        /* ── Menú hamburger (móvil) ── */
+        const toggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        toggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            toggle.classList.toggle('open', isOpen);
+            toggle.setAttribute('aria-expanded', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+
+        /* Cerrar menú al hacer clic en un enlace */
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                toggle.classList.remove('open');
+                toggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
+
+        /* ── Formulario de contacto ── */
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('form-submit-btn');
+            const name = document.getElementById('nombre').value.trim();
+            const tel = document.getElementById('telefono').value.trim();
+            const msg = document.getElementById('mensaje').value.trim();
+
+            /* Redirigir a WhatsApp con el mensaje pre-llenado */
+            const text = encodeURIComponent(
+                `Hola! Soy ${name}.\nTeléfono: ${tel}\n\n${msg}`
+            );
+            window.open(`https://wa.me/1234567890?text=${text}`, '_blank');
+
+            btn.textContent = '✔ Mensaje enviado';
+            btn.style.background = '#2ecc71';
+            btn.style.color = '#fff';
+            setTimeout(() => {
+                btn.textContent = 'Enviar mensaje ✦';
+                btn.style.background = '';
+                btn.style.color = '';
+                e.target.reset();
+            }, 3000);
+        }
+
+        /* ── Animación de aparición suave al hacer scroll ── */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        /* Aplicar a tarjetas de servicios, galería y testimonios */
+        document.querySelectorAll(
+            '.service-card, .gallery-item, .testimonial-card, .about-features .feature-item'
+        ).forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(24px)';
+            el.style.transition = 'opacity .6s ease, transform .6s ease';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+
+</html>
